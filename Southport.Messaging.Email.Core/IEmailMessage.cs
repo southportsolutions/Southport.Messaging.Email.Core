@@ -33,7 +33,7 @@ namespace Southport.Messaging.Email.Core
         bool TrackingClicks { get; }
         bool TrackingOpens { get; }
         Dictionary<string, string> CustomArguments { get; }
-        IEmailMessage AddFromAddress(IEmailMessage address);
+        IEmailMessage AddFromAddress(IEmailAddress address);
         IEmailMessage AddFromAddress(string address, string name = null);
         IEmailMessage AddToAddress(IEmailRecipient address);
         IEmailMessage AddToAddress(string address, string name = null);
