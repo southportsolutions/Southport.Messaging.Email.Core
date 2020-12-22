@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using Southport.Messaging.Email.Core.Recipient;
 using Xunit;
 using Xunit.Abstractions;

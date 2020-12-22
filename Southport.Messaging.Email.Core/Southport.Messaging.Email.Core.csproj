@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>net5.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Robert Anstett</Authors>
     <Company>Southport Solutions, LLC</Company>
@@ -12,7 +12,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Email</PackageTags>
-    <PackageReleaseNotes>Fixed interface references.</PackageReleaseNotes>
+    <PackageReleaseNotes>Adjusted the Reference to net5.0.</PackageReleaseNotes>
     <Version>1.0.3</Version>
   </PropertyGroup>
 
