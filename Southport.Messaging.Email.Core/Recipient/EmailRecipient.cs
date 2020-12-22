@@ -6,7 +6,7 @@ namespace Southport.Messaging.Email.Core.Recipient
     {
         public EmailRecipient()
         {
-            Substitutions = new Dictionary<string, string>();
+            Substitutions = new Dictionary<string, object>();
         }
         public EmailRecipient(string address) : this()
         {
@@ -16,17 +16,17 @@ namespace Southport.Messaging.Email.Core.Recipient
         {
             EmailAddress = new EmailAddress(address, name);
         }
-        public EmailRecipient(string name, string address, Dictionary<string, string> substitutions) : this(name, address)
+        public EmailRecipient(string name, string address, Dictionary<string, object> substitutions) : this(name, address)
         {
             Substitutions = substitutions;
         }
-        public EmailRecipient(string address, Dictionary<string, string> substitutions) : this(address)
+        public EmailRecipient(string address, Dictionary<string, object> substitutions) : this(address)
         {
             Substitutions = substitutions;
         }
 
         public EmailAddress EmailAddress { get; set; }
-        public Dictionary<string, string> Substitutions { get; set; }
+        public Dictionary<string, object> Substitutions { get; set; }
 
     }
 }
