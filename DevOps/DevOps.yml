@@ -23,8 +23,6 @@ steps:
   inputs:
     command: 'restore'
     restoreSolution: '**/*.sln'
-    feedsToUse: 'config'
-    nugetConfigPath: 'nuget.config'
 
 - task: DotNetCoreCLI@2
   name: Build
@@ -32,7 +30,16 @@ steps:
     command: 'build'
     projects: '**/*.csproj'
     arguments: '--output $(Build.ArtifactStagingDirectory) --configuration Release'
-    
+
+- task: VSTest@2
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\*.Test.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+
 - task: NuGetCommand@2
   inputs:
     command: 'push'
