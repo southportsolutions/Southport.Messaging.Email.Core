@@ -25,7 +25,7 @@ namespace Southport.Messaging.Email.Core
         string Subject { get; }
         string Text { get; }
         string Html { get; }
-        List<EmailAttachment> Attachments { get; }
+        List<IEmailAttachment> Attachments { get; }
         string TemplateId { get; }
         DateTime? DeliveryTime { get; }
         bool? TestMode { get; }
@@ -33,7 +33,7 @@ namespace Southport.Messaging.Email.Core
         bool TrackingClicks { get; }
         bool TrackingOpens { get; }
         Dictionary<string, string> CustomArguments { get; }
-        IEmailMessage AddFromAddress(IEmailRecipient address);
+        IEmailMessage AddFromAddress(IEmailMessage address);
         IEmailMessage AddFromAddress(string address, string name = null);
         IEmailMessage AddToAddress(IEmailRecipient address);
         IEmailMessage AddToAddress(string address, string name = null);
