@@ -32,7 +32,16 @@ steps:
     command: 'build'
     projects: '**/*.csproj'
     arguments: '--output $(Build.ArtifactStagingDirectory) --configuration Release'
-    
+
+- task: VSTest@2
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\*test*.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+
 - task: NuGetCommand@2
   inputs:
     command: 'push'
