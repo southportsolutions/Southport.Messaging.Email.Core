@@ -13,7 +13,7 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Email</PackageTags>
     <PackageReleaseNotes>Adjusted the Reference to net5.0.</PackageReleaseNotes>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
