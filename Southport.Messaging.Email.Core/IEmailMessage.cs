@@ -33,22 +33,22 @@ namespace Southport.Messaging.Email.Core
         bool TrackingClicks { get; }
         bool TrackingOpens { get; }
         Dictionary<string, string> CustomArguments { get; }
-        IEmailMessage AddFromAddress(EmailAddress address);
+        IEmailMessage AddFromAddress(IEmailRecipient address);
         IEmailMessage AddFromAddress(string address, string name = null);
-        IEmailMessage AddToAddress(EmailAddress address);
+        IEmailMessage AddToAddress(IEmailRecipient address);
         IEmailMessage AddToAddress(string address, string name = null);
-        IEmailMessage AddToAddresses(List<EmailAddress> addresses);
-        IEmailMessage AddCcAddress(EmailAddress address);
+        IEmailMessage AddToAddresses(List<IEmailRecipient> addresses);
+        IEmailMessage AddCcAddress(IEmailRecipient address);
         IEmailMessage AddCcAddress(string address, string name = null);
-        IEmailMessage AddCcAddresses(List<EmailAddress> addresses);
-        IEmailMessage AddBccAddress(EmailAddress address);
+        IEmailMessage AddCcAddresses(List<IEmailRecipient> addresses);
+        IEmailMessage AddBccAddress(IEmailRecipient address);
         IEmailMessage AddBccAddress(string address, string name = null);
-        IEmailMessage AddBccAddresses(List<EmailAddress> addresses);
+        IEmailMessage AddBccAddresses(List<IEmailRecipient> addresses);
         IEmailMessage SetSubject(string subject);
         IEmailMessage SetText(string text);
         IEmailMessage SetHtml(string html);
-        IEmailMessage AddAttachments(EmailAttachment attachment);
-        IEmailMessage AddAttachments(List<EmailAttachment> attachments);
+        IEmailMessage AddAttachments(IEmailAttachment attachment);
+        IEmailMessage AddAttachments(List<IEmailAttachment> attachments);
         IEmailMessage SetTemplate(string template);
         IEmailMessage SetTemplateVersion(string templateVersion);
         IEmailMessage SetTemplateText(string templateText);
