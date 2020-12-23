@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Southport.Messaging.Email.Core.EmailAttachments;
 using Southport.Messaging.Email.Core.Recipient;
+using Southport.Messaging.Email.Core.Result;
 
 namespace Southport.Messaging.Email.Core
 {
@@ -60,7 +61,7 @@ namespace Southport.Messaging.Email.Core
         IEmailMessage SetReplyTo(string emailAddress);
         IEmailMessage AddCustomArgument(string key, string value);
         IEmailMessage AddCustomArguments(Dictionary<string, string> customArguments);
-        Task<HttpResponseMessage> Send(CancellationToken cancellationToken = default);
-        Task<HttpResponseMessage> Send(string domain, CancellationToken cancellationToken = default);
+        Task<IEnumerable<IEmailResult>> Send(CancellationToken cancellationToken = default);
+        Task<IEnumerable<IEmailResult>> Send(string domain, CancellationToken cancellationToken = default);
     }
 }
