@@ -9,6 +9,7 @@ namespace Southport.Messaging.Email.Core.Recipient
         {
             Substitutions = new Dictionary<string, object>();
             Attachments = new List<IEmailAttachment>();
+            CustomArguments = new Dictionary<string, string>();
         }
         public EmailRecipient(string address) : this()
         {
@@ -22,14 +23,22 @@ namespace Southport.Messaging.Email.Core.Recipient
         {
             Substitutions = substitutions;
         }
+        public EmailRecipient(string name, string address, Dictionary<string, object> substitutions, Dictionary<string, string> customArguments) : this(name, address, substitutions)
+        {
+            CustomArguments = customArguments;
+        }
         public EmailRecipient(string address, Dictionary<string, object> substitutions) : this(address)
         {
             Substitutions = substitutions;
         }
+        public EmailRecipient(string address, Dictionary<string, object> substitutions, Dictionary<string, string> customArguments) : this(address, substitutions)
+        {
+            CustomArguments = customArguments;
+        }
 
         public EmailAddress EmailAddress { get; set; }
-        public Dictionary<string, object> Substitutions { get; set; }
-        public List<IEmailAttachment> Attachments { get; set; }
-
+        public Dictionary<string, object> Substitutions { get; }
+        public List<IEmailAttachment> Attachments { get; }
+        public Dictionary<string, string> CustomArguments { get; }
     }
 }
