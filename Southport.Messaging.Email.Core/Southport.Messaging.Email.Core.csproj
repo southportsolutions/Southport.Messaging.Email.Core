@@ -12,8 +12,8 @@
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Email</PackageTags>
-    <PackageReleaseNotes>Added Email Result.</PackageReleaseNotes>
-    <Version>1.1.0-beta1</Version>
+    <PackageReleaseNotes>Added Email Attachments to recipient.</PackageReleaseNotes>
+    <Version>1.1.0-beta2</Version>
   </PropertyGroup>
 
   <ItemGroup>
