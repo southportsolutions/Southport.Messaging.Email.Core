@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Southport.Messaging.Email.Core.EmailAttachments;
 
 namespace Southport.Messaging.Email.Core.Recipient
 {
@@ -7,6 +8,7 @@ namespace Southport.Messaging.Email.Core.Recipient
         public EmailRecipient()
         {
             Substitutions = new Dictionary<string, object>();
+            Attachments = new List<IEmailAttachment>();
         }
         public EmailRecipient(string address) : this()
         {
@@ -27,6 +29,7 @@ namespace Southport.Messaging.Email.Core.Recipient
 
         public EmailAddress EmailAddress { get; set; }
         public Dictionary<string, object> Substitutions { get; set; }
+        public List<IEmailAttachment> Attachments { get; set; }
 
     }
 }
