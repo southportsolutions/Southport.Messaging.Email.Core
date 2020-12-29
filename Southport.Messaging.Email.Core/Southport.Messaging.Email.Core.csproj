@@ -13,7 +13,7 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Email</PackageTags>
     <PackageReleaseNotes>Added Custom Arguments to the recipient.</PackageReleaseNotes>
-    <Version>1.1.0-beta3</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
