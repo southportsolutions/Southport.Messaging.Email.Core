@@ -38,7 +38,7 @@ steps:
       **\Southport.Messaging.Email.Core.Test.dll
       !**\*TestAdapter.dll
       !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
+    searchFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: NuGetCommand@2
   inputs:
