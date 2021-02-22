@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Southport.Messaging.Email.Core.Recipient;
 using Xunit;
 using Xunit.Abstractions;
@@ -88,6 +89,12 @@ namespace Southport.Messaging.Email.Core.Test
                 _output.WriteLine(invalidEmailAddress);
                 Assert.False(new EmailAddress(invalidEmailAddress).Validate());
             }
+        }
+
+        [Fact]
+        public void EmailAddress_Consutrctor_NullAddress()
+        {
+            Assert.Throws<ArgumentNullException>(() => new EmailAddress(null));
         }
     }
 }
