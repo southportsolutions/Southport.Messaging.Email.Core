@@ -13,7 +13,7 @@ stages:
 - stage: 'BuildLibraryMain'
   displayName: 'Build - Library'
   dependsOn: []
-  condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/main/')
+  condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/main')
   variables:
     projectName: 'Southport.Messaging.Email.Core'
     buildConfiguration: 'Release'
