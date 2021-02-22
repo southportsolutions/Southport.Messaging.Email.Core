@@ -34,9 +34,9 @@ stages:
   - template: 'DevOps/build.yml'
 
 #------------------------Deploy LIBRARY------------------------------------------
-- stage: 'BuildLibraryRelease'
+- stage: 'ReleaseLibraryRelease'
   displayName: 'Deploy to prod (release)'
-  dependsOn: 'BuildLibrary'
+  dependsOn: 'BuildLibraryRelease'
   condition: succeeded()
   variables:
     environment: nuget-publish-approval
