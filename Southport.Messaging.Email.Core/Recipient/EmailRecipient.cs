@@ -32,62 +32,39 @@ namespace Southport.Messaging.Email.Core.Recipient
             Attachments = new List<IEmailAttachment>();
             CustomArguments = new Dictionary<string, string>();
         }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmailRecipient"/> class.
-        /// </summary>
-        /// <param name="emailAddress">The address.</param>
-        public EmailRecipient(string emailAddress) : this()
-        {
-            EmailAddress = new EmailAddress(emailAddress);
-        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EmailRecipient"/> class.
         /// </summary>
         /// <param name="name">The recipient's name.</param>
         /// <param name="emailAddress">The recipient's email address.</param>
-        public EmailRecipient(string name, string emailAddress) : this()
+        /// <param name="substitutions">The recipient's substitutions.</param>
+        /// <param name="customArguments">The recipient's custom arguments to attach data to the message.</param>
+        /// <param name="attachments">The recipient's attachments.</param>
+        public EmailRecipient(string emailAddress, string name = null, Dictionary<string, object> substitutions = null, Dictionary<string, string> customArguments = null, IEnumerable<IEmailAttachment> attachments = null) : this()
         {
             EmailAddress = new EmailAddress(emailAddress, name);
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmailRecipient"/> class.
-        /// </summary>
-        /// <param name="name">The recipient's name.</param>
-        /// <param name="emailAddress">The recipient's email address.</param>
-        /// <param name="substitutions">The recipient's substitutions.</param>
-        public EmailRecipient(string name, string emailAddress, Dictionary<string, object> substitutions) : this(name, emailAddress)
-        {
-            Substitutions = substitutions;
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmailRecipient"/> class.
-        /// </summary>
-        /// <param name="name">The recipient's name.</param>
-        /// <param name="emailAddress">The recipient's email address.</param>
-        /// <param name="substitutions">The recipient's substitutions.</param>
-        /// <param name="customArguments">The recipient's custom arguments to attach data to the message.</param>
-        public EmailRecipient(string name, string emailAddress, Dictionary<string, object> substitutions, Dictionary<string, string> customArguments) : this(name, emailAddress, substitutions)
-        {
-            CustomArguments = customArguments;
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmailRecipient"/> class.
-        /// </summary>
-        /// <param name="emailAddress">The recipient's email address.</param>
-        /// <param name="substitutions">The recipient's substitutions.</param>
-        public EmailRecipient(string emailAddress, Dictionary<string, object> substitutions) : this(emailAddress)
-        {
-            Substitutions = substitutions;
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmailRecipient"/> class.
-        /// </summary>
-        /// <param name="emailAddress">The recipient's email address.</param>
-        /// <param name="substitutions">The recipient's substitutions.</param>
-        /// <param name="customArguments">The recipient's custom arguments to attach data to the message.</param>
-        public EmailRecipient(string emailAddress, Dictionary<string, object> substitutions, Dictionary<string, string> customArguments) : this(emailAddress, substitutions)
-        {
-            CustomArguments = customArguments;
+
+            if (substitutions != null)
+            {
+                foreach (var substitution in substitutions)
+                {
+                    Substitutions[substitution.Key] = substitution.Value;
+                }
+            }
+
+            if (customArguments != null)
+            {
+                foreach (var customArg in customArguments)
+                {
+                    CustomArguments[customArg.Key] = customArg.Value;
+                }
+            }
+
+            if (attachments != null)
+            {
+                Attachments.AddRange(attachments);
+            }
         }
 
         /// <summary>
