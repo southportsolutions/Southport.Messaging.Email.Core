@@ -9,11 +9,23 @@ variables:
   vmImage: 'ubuntu-latest'
 
 stages:
-#------------------------Build Library------------------------------------------
-- stage: 'BuildLibrary'
+#------------------------Build Library - Main------------------------------------------
+- stage: 'BuildLibraryMain'
   displayName: 'Build - Library'
   dependsOn: []
-#  condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/release/')
+  condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/main/')
+  variables:
+    projectName: 'Southport.Messaging.Email.Core'
+    buildConfiguration: 'Release'
+    artifactName: 'library'
+  jobs:
+  - template: 'DevOps/build.yml'
+
+#------------------------Build Library - Release------------------------------------------
+- stage: 'BuildLibraryRelease'
+  displayName: 'Build - Library'
+  dependsOn: []
+  condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/release/')
   variables:
     projectName: 'Southport.Messaging.Email.Core'
     buildConfiguration: 'Release'
@@ -22,7 +34,7 @@ stages:
   - template: 'DevOps/build.yml'
 
 #------------------------Deploy LIBRARY------------------------------------------
-- stage: 'DeployLibrary'
+- stage: 'BuildLibraryRelease'
   displayName: 'Deploy to prod (release)'
   dependsOn: 'BuildLibrary'
   condition: succeeded()
