@@ -44,5 +44,5 @@ stages:
     artifact: 'release-library'
   jobs:
   - template: 'DevOps/deploy.yml'  
-  parameters:    
-    environment: 'nuget-publish-approval'
+    parameters:    
+        environment: 'nuget-publish-approval'
