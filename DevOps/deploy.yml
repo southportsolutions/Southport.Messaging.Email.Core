@@ -2,7 +2,7 @@ jobs:
 - deployment: DeployAppPackage
   pool:
     vmImage: $(vmImage)
-  environment: $(environment)
+  environment: ${{ parameters.environment }}
   strategy:
     runOnce:
       deploy:

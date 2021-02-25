@@ -4,7 +4,7 @@
 // Created          : 12-27-2020
 //
 // Last Modified By : RobertHAnstett
-// Last Modified On : 12-28-2020
+// Last Modified On : 2021-02-24
 // ***********************************************************************
 // <copyright file="IEmailMessage.cs" company="Southport Solutions, LLC">
 //     2020
@@ -24,7 +24,7 @@ namespace Southport.Messaging.Email.Core
     /// <summary>
     /// Interface IEmailMessage
     /// </summary>
-    public interface IEmailMessage
+    public interface IEmailMessage<TInterface> where TInterface : IEmailAddress
     {
         /// <summary>
         /// Gets from address.
@@ -118,7 +118,7 @@ namespace Southport.Messaging.Email.Core
         /// <value><c>null</c> if [test mode] contains no value, <c>true</c> if [test mode]; otherwise, <c>false</c>.</value>
         bool? TestMode { get; }
         /// <summary>
-        /// Gets a value indicating whether this <see cref="IEmailMessage"/> is tracking.
+        /// Gets a value indicating whether this <see cref="IEmailMessage&lt;TInterface&gt;"/> is tracking.
         /// </summary>
         /// <value><c>true</c> if tracking; otherwise, <c>false</c>.</value>
         bool Tracking { get; }
@@ -142,168 +142,168 @@ namespace Southport.Messaging.Email.Core
         /// </summary>
         /// <param name="emailAddress">The address.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddFromAddress(IEmailAddress emailAddress);
+        TInterface AddFromAddress(IEmailAddress emailAddress);
         /// <summary>
         /// Adds from address.
         /// </summary>
         /// <param name="emailAddress">The address.</param>
         /// <param name="name">The name.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddFromAddress(string emailAddress, string name = null);
+        TInterface AddFromAddress(string emailAddress, string name = null);
         /// <summary>
         /// Adds to address.
         /// </summary>
         /// <param name="recipient">The address.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddToAddress(IEmailRecipient recipient);
+        TInterface AddToAddress(IEmailRecipient recipient);
         /// <summary>
         /// Adds to address.
         /// </summary>
         /// <param name="emailAddress">The address.</param>
         /// <param name="name">The name.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddToAddress(string emailAddress, string name = null);
+        TInterface AddToAddress(string emailAddress, string name = null);
         /// <summary>
         /// Adds to addresses.
         /// </summary>
         /// <param name="recipients">The addresses.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddToAddresses(List<IEmailRecipient> recipients);
+        TInterface AddToAddresses(List<IEmailRecipient> recipients);
         /// <summary>
         /// Adds the cc address.
         /// </summary>
         /// <param name="recipient">The address.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddCcAddress(IEmailRecipient recipient);
+        TInterface AddCcAddress(IEmailRecipient recipient);
         /// <summary>
         /// Adds the cc address.
         /// </summary>
         /// <param name="emailAddress">The address.</param>
         /// <param name="name">The name.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddCcAddress(string emailAddress, string name = null);
+        TInterface AddCcAddress(string emailAddress, string name = null);
         /// <summary>
         /// Adds the cc addresses.
         /// </summary>
         /// <param name="recipients">The addresses.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddCcAddresses(List<IEmailRecipient> recipients);
+        TInterface AddCcAddresses(List<IEmailRecipient> recipients);
         /// <summary>
         /// Adds the BCC address.
         /// </summary>
         /// <param name="recipient">The address.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddBccAddress(IEmailRecipient recipient);
+        TInterface AddBccAddress(IEmailRecipient recipient);
         /// <summary>
         /// Adds the BCC address.
         /// </summary>
         /// <param name="emailAddress">The address.</param>
         /// <param name="name">The name.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddBccAddress(string emailAddress, string name = null);
+        TInterface AddBccAddress(string emailAddress, string name = null);
         /// <summary>
         /// Adds the BCC addresses.
         /// </summary>
         /// <param name="recipients">The addresses.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddBccAddresses(List<IEmailRecipient> recipients);
+        TInterface AddBccAddresses(List<IEmailRecipient> recipients);
         /// <summary>
         /// Sets the subject.
         /// </summary>
         /// <param name="subject">The subject.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage SetSubject(string subject);
+        TInterface SetSubject(string subject);
         /// <summary>
         /// Sets the text.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage SetText(string text);
+        TInterface SetText(string text);
         /// <summary>
         /// Sets the HTML.
         /// </summary>
         /// <param name="html">The HTML.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage SetHtml(string html);
+        TInterface SetHtml(string html);
         /// <summary>
         /// Adds the attachments.
         /// </summary>
         /// <param name="attachment">The attachment.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddAttachments(IEmailAttachment attachment);
+        TInterface AddAttachments(IEmailAttachment attachment);
         /// <summary>
         /// Adds the attachments.
         /// </summary>
         /// <param name="attachments">The attachments.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddAttachments(List<IEmailAttachment> attachments);
+        TInterface AddAttachments(List<IEmailAttachment> attachments);
         /// <summary>
         /// Sets the template.
         /// </summary>
         /// <param name="template">The template.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage SetTemplate(string template);
+        TInterface SetTemplate(string template);
         /// <summary>
         /// Sets the template version.
         /// </summary>
         /// <param name="templateVersion">The template version.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage SetTemplateVersion(string templateVersion);
+        TInterface SetTemplateVersion(string templateVersion);
         /// <summary>
         /// Sets the template text.
         /// </summary>
         /// <param name="templateText">The template text.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage SetTemplateText(string templateText);
+        TInterface SetTemplateText(string templateText);
         /// <summary>
         /// Sets the delivery time.
         /// </summary>
         /// <param name="deliveryTime">The delivery time.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage SetDeliveryTime(DateTime deliveryTime);
+        TInterface SetDeliveryTime(DateTime deliveryTime);
         /// <summary>
         /// Sets the test mode.
         /// </summary>
         /// <param name="testMode">if set to <c>true</c> [test mode].</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage SetTestMode(bool testMode);
+        TInterface SetTestMode(bool testMode);
         /// <summary>
         /// Sets the tracking.
         /// </summary>
         /// <param name="tracking">if set to <c>true</c> [tracking].</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage SetTracking(bool tracking);
+        TInterface SetTracking(bool tracking);
         /// <summary>
         /// Sets the tracking clicks.
         /// </summary>
         /// <param name="tracking">if set to <c>true</c> [tracking].</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage SetTrackingClicks(bool tracking);
+        TInterface SetTrackingClicks(bool tracking);
         /// <summary>
         /// Sets the tracking opens.
         /// </summary>
         /// <param name="tracking">if set to <c>true</c> [tracking].</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage SetTrackingOpens(bool tracking);
+        TInterface SetTrackingOpens(bool tracking);
         /// <summary>
         /// Sets the reply to.
         /// </summary>
         /// <param name="emailAddress">The email address.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage SetReplyTo(string emailAddress);
+        TInterface SetReplyTo(string emailAddress);
         /// <summary>
         /// Adds the custom argument to attach data to the message (recipient custom arguments will override message level ones).
         /// </summary>
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddCustomArgument(string key, string value);
+        TInterface AddCustomArgument(string key, string value);
         /// <summary>
         /// Adds the custom arguments.
         /// </summary>
         /// <param name="customArguments">The custom arguments.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessage AddCustomArguments(Dictionary<string, string> customArguments);
+        TInterface AddCustomArguments(Dictionary<string, string> customArguments);
         /// <summary>
         /// Sends the specified cancellation token.
         /// </summary>

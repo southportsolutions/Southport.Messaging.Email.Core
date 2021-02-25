@@ -1,9 +1,13 @@
 # only trigger build through main or release branch
 trigger:
-- main
-- release/*
+  tags:
+    include:
+      - release@*
+  branches:
+    include:
+      - master
 
-name: $(Build.SourceBranch).$(Date:yy)$(DayOfYear)$(Rev:.r) 
+name: $(Build.SourceBranchName).$(Date:yyyyMMdd)$(Rev:.r) 
 
 variables:
   vmImage: 'ubuntu-latest'
@@ -37,7 +41,8 @@ stages:
   dependsOn: 'BuildLibraryRelease'
   condition: succeeded()
   variables:
-    environment: 'nuget-publish-approval'
     artifact: 'release-library'
   jobs:
-  - template: 'DevOps/deploy.yml'
+  - template: 'DevOps/deploy.yml'  
+  parameters:    
+    environment: 'nuget-publish-approval'
