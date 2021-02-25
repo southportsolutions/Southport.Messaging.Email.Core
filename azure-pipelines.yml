@@ -5,7 +5,7 @@ trigger:
       - release@*
   branches:
     include:
-      - master
+      - main
 
 name: $(Build.SourceBranchName).$(Date:yyyyMMdd)$(Rev:.r) 
 
