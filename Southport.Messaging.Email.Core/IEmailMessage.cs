@@ -1,9 +1,9 @@
 ﻿// ***********************************************************************
 // Assembly         : Southport.Messaging.Email.Core
-// Author           : RobertHAnstett
+// Author           : Robert H Anstett
 // Created          : 12-27-2020
 //
-// Last Modified By : RobertHAnstett
+// Last Modified By : Robert H Anstett
 // Last Modified On : 2021-02-24
 // ***********************************************************************
 // <copyright file="IEmailMessage.cs" company="Southport Solutions, LLC">
@@ -21,10 +21,7 @@ using Southport.Messaging.Email.Core.Result;
 
 namespace Southport.Messaging.Email.Core
 {
-    /// <summary>
-    /// Interface IEmailMessage
-    /// </summary>
-    public interface IEmailMessage<TInterface> where TInterface : IEmailAddress
+    public interface IEmailMessageCore
     {
         /// <summary>
         /// Gets from address.
@@ -118,7 +115,7 @@ namespace Southport.Messaging.Email.Core
         /// <value><c>null</c> if [test mode] contains no value, <c>true</c> if [test mode]; otherwise, <c>false</c>.</value>
         bool? TestMode { get; }
         /// <summary>
-        /// Gets a value indicating whether this <see cref="IEmailMessage&lt;TInterface&gt;"/> is tracking.
+        /// Gets a value indicating whether this <see cref="IEmailMessageCore"/> is tracking.
         /// </summary>
         /// <value><c>true</c> if tracking; otherwise, <c>false</c>.</value>
         bool Tracking { get; }
@@ -137,6 +134,26 @@ namespace Southport.Messaging.Email.Core
         /// </summary>
         /// <value>The custom arguments.</value>
         Dictionary<string, string> CustomArguments { get; }
+        /// <summary>
+        /// Sends the specified cancellation token.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>Task&lt;IEnumerable&lt;IEmailResult&gt;&gt;.</returns>
+        Task<IEnumerable<IEmailResult>> Send(CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Sends the specified domain.
+        /// </summary>
+        /// <param name="domain">The domain.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>Task&lt;IEnumerable&lt;IEmailResult&gt;&gt;.</returns>
+        Task<IEnumerable<IEmailResult>> Send(string domain, CancellationToken cancellationToken = default);
+    }
+
+    /// <summary>
+    /// Interface IEmailMessage
+    /// </summary>
+    public interface IEmailMessage<TInterface> : IEmailMessageCore where TInterface : IEmailMessageCore
+    {
         /// <summary>
         /// Adds from address.
         /// </summary>
@@ -304,18 +321,5 @@ namespace Southport.Messaging.Email.Core
         /// <param name="customArguments">The custom arguments.</param>
         /// <returns>IEmailMessage.</returns>
         TInterface AddCustomArguments(Dictionary<string, string> customArguments);
-        /// <summary>
-        /// Sends the specified cancellation token.
-        /// </summary>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>Task&lt;IEnumerable&lt;IEmailResult&gt;&gt;.</returns>
-        Task<IEnumerable<IEmailResult>> Send(CancellationToken cancellationToken = default);
-        /// <summary>
-        /// Sends the specified domain.
-        /// </summary>
-        /// <param name="domain">The domain.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>Task&lt;IEnumerable&lt;IEmailResult&gt;&gt;.</returns>
-        Task<IEnumerable<IEmailResult>> Send(string domain, CancellationToken cancellationToken = default);
     }
 }
