@@ -8,7 +8,7 @@ variables:
     
   vmImage: 'ubuntu-latest'
   buildConfiguration: 'Release'
-  projectName: 'Southport.Messaging.Email.MailGun'
+  projectName: 'Southport.Messaging.Email.Core'
   sonarCloudOrganization: 'southport'
-  sonarCloudProjectKey: 'southport_Southport.Messaging.MailGun'
-  sonarCloudProjectName: 'Southport.Messaging.MailGun'
+  sonarCloudProjectKey: 'southport_Southport.Messaging.Core'
+  sonarCloudProjectName: 'Southport.Messaging.Core'

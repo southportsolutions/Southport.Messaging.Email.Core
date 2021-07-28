@@ -9,9 +9,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Southport.Messaging.Email.C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{1737711F-ADD1-4332-8573-D8775AC13D48}"
 	ProjectSection(SolutionItems) = preProject
-		azure-pipelines.yml = azure-pipelines.yml
+		DevOps\azure-pipelines.yml = DevOps\azure-pipelines.yml
 		DevOps\build.yml = DevOps\build.yml
 		DevOps\deploy.yml = DevOps\deploy.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Variables", "Variables", "{02502D41-2426-419C-B4CD-8D230A4724E1}"
+	ProjectSection(SolutionItems) = preProject
+		DevOps\Variables\variables.dev.yml = DevOps\Variables\variables.dev.yml
+		DevOps\Variables\variables.prod.yml = DevOps\Variables\variables.prod.yml
+		DevOps\Variables\variables.yml = DevOps\Variables\variables.yml
 	EndProjectSection
 EndProject
 Global
@@ -31,6 +38,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02502D41-2426-419C-B4CD-8D230A4724E1} = {1737711F-ADD1-4332-8573-D8775AC13D48}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F69F3A11-10AD-4A27-BF5B-0D9794D50231}
