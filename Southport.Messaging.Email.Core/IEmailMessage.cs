@@ -52,32 +52,32 @@ namespace Southport.Messaging.Email.Core
         /// Gets the cc addresses.
         /// </summary>
         /// <value>The cc addresses.</value>
-        IEnumerable<IEmailRecipient> CcAddresses { get; }
+        IEnumerable<IEmailAddress> CcAddresses { get; }
         /// <summary>
         /// Get valid CC addresses.
         /// </summary>
         /// <value>Valid CC addresses.</value>
-        IEnumerable<IEmailRecipient> CcAddressesValid { get; }
+        IEnumerable<IEmailAddress> CcAddressesValid { get; }
         /// <summary>
         /// Get invalid CC addresses.
         /// </summary>
         /// <value>Invalid CC addresses.</value>
-        IEnumerable<IEmailRecipient> CcAddressesInvalid { get; }
+        IEnumerable<IEmailAddress> CcAddressesInvalid { get; }
         /// <summary>
         /// Gets the BCC addresses.
         /// </summary>
         /// <value>The BCC addresses.</value>
-        IEnumerable<IEmailRecipient> BccAddresses { get; }
+        IEnumerable<IEmailAddress> BccAddresses { get; }
         /// <summary>
         /// Get valid BCC addresses.
         /// </summary>
         /// <value>Valid BCC addresses.</value>
-        IEnumerable<IEmailRecipient> BccAddressesValid { get; }
+        IEnumerable<IEmailAddress> BccAddressesValid { get; }
         /// <summary>
         /// Gets the BCC addresses invalid.
         /// </summary>
         /// <value>The BCC addresses invalid.</value>
-        IEnumerable<IEmailRecipient> BccAddressesInvalid { get; }
+        IEnumerable<IEmailAddress> BccAddressesInvalid { get; }
 
         /// <summary>
         /// Gets the subject.
@@ -191,7 +191,7 @@ namespace Southport.Messaging.Email.Core
         /// </summary>
         /// <param name="recipient">The address.</param>
         /// <returns>IEmailMessage.</returns>
-        TInterface AddCcAddress(IEmailRecipient recipient);
+        TInterface AddCcAddress(IEmailAddress recipient);
         /// <summary>
         /// Adds the cc address.
         /// </summary>
@@ -204,13 +204,13 @@ namespace Southport.Messaging.Email.Core
         /// </summary>
         /// <param name="recipients">The addresses.</param>
         /// <returns>IEmailMessage.</returns>
-        TInterface AddCcAddresses(List<IEmailRecipient> recipients);
+        TInterface AddCcAddresses(List<IEmailAddress> recipients);
         /// <summary>
         /// Adds the BCC address.
         /// </summary>
         /// <param name="recipient">The address.</param>
         /// <returns>IEmailMessage.</returns>
-        TInterface AddBccAddress(IEmailRecipient recipient);
+        TInterface AddBccAddress(IEmailAddress recipient);
         /// <summary>
         /// Adds the BCC address.
         /// </summary>
@@ -223,7 +223,7 @@ namespace Southport.Messaging.Email.Core
         /// </summary>
         /// <param name="recipients">The addresses.</param>
         /// <returns>IEmailMessage.</returns>
-        TInterface AddBccAddresses(List<IEmailRecipient> recipients);
+        TInterface AddBccAddresses(List<IEmailAddress> recipients);
         /// <summary>
         /// Sets the subject.
         /// </summary>
