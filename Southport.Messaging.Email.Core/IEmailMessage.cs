@@ -140,13 +140,6 @@ namespace Southport.Messaging.Email.Core
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>Task&lt;IEnumerable&lt;IEmailResult&gt;&gt;.</returns>
         Task<IEnumerable<IEmailResult>> Send(CancellationToken cancellationToken = default);
-        /// <summary>
-        /// Sends the specified domain.
-        /// </summary>
-        /// <param name="domain">The domain.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>Task&lt;IEnumerable&lt;IEmailResult&gt;&gt;.</returns>
-        Task<IEnumerable<IEmailResult>> Send(string domain, CancellationToken cancellationToken = default);
     }
 
     /// <summary>
