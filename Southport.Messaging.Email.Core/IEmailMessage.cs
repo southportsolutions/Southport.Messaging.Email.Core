@@ -261,18 +261,6 @@ namespace Southport.Messaging.Email.Core
         /// <returns>IEmailMessage.</returns>
         TInterface SetTemplate(string template);
         /// <summary>
-        /// Sets the template version.
-        /// </summary>
-        /// <param name="templateVersion">The template version.</param>
-        /// <returns>IEmailMessage.</returns>
-        TInterface SetTemplateVersion(string templateVersion);
-        /// <summary>
-        /// Sets the template text.
-        /// </summary>
-        /// <param name="templateText">The template text.</param>
-        /// <returns>IEmailMessage.</returns>
-        TInterface SetTemplateText(string templateText);
-        /// <summary>
         /// Sets the delivery time.
         /// </summary>
         /// <param name="deliveryTime">The delivery time.</param>
