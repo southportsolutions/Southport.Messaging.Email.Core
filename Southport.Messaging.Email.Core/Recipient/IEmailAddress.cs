@@ -4,7 +4,7 @@
 // Created          : 12-27-2020
 //
 // Last Modified By : RobertHAnstett
-// Last Modified On : 12-27-2020
+// Last Modified On : 12-29-2020
 // ***********************************************************************
 // <copyright file="IEmailAddress.cs" company="Southport Solutions, LLC">
 //     2020
@@ -33,6 +33,11 @@ namespace Southport.Messaging.Email.Core.Recipient
         /// </summary>
         /// <returns><c>true</c> if Address is a valid email address, <c>false</c> otherwise.</returns>
         bool Validate();
+        /// <summary>
+        /// Returns true if ... is valid.
+        /// </summary>
+        /// <value><c>true</c> if this instance is valid; otherwise, <c>false</c>.</value>
+        bool IsValid { get; }
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
