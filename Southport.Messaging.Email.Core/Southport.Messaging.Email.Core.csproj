@@ -13,7 +13,6 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Email</PackageTags>
     <PackageReleaseNotes>Updated netstandard2.0.</PackageReleaseNotes>
-    <Version>1.7.0-beta2</Version>
   </PropertyGroup>
 
   <ItemGroup>
