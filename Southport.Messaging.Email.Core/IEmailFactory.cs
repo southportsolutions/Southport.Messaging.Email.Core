@@ -16,12 +16,12 @@ namespace Southport.Messaging.Email.Core
     /// <summary>
     /// Interface IEmailMessageFactory
     /// </summary>
-    public interface IEmailMessageFactory<TInterface> where TInterface : IEmailMessageCore
+    public interface IEmailMessageFactory
     {
         /// <summary>
         /// Creates this instance.
         /// </summary>
         /// <returns>IEmailMessage TInterface.</returns>
-        IEmailMessage<TInterface> Create();
+        IEmailMessageCore Create();
     }
 }
