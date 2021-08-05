@@ -4,7 +4,7 @@
 // Created          : 12-27-2020
 //
 // Last Modified By : Robert H Anstett
-// Last Modified On : 2021-02-24
+// Last Modified On : 2021-08-05
 // ***********************************************************************
 // <copyright file="IEmailMessage.cs" company="Southport Solutions, LLC">
 //     2020
@@ -21,7 +21,7 @@ namespace Southport.Messaging.Email.Core
     /// <summary>
     /// Interface IEmailMessage
     /// </summary>
-    [Obsolete]
+    [Obsolete("Use IEmailMessageCore.")]
     public interface IEmailMessage<TInterface> : IEmailMessageCore where TInterface : IEmailMessageCore
     {
         /// <summary>

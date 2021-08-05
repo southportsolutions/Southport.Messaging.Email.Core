@@ -12,7 +12,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>Email</PackageTags>
-    <PackageReleaseNotes>Updated netstandard2.0.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added SetFromAddress to replace AddFromAddress.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

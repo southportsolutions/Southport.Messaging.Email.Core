@@ -11,7 +11,6 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using System.IO;
 
 namespace Southport.Messaging.Email.Core.EmailAttachments
 {

@@ -1,4 +1,17 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : Southport.Messaging.Email.Core
+// Author           : RobertHAnstett
+// Created          : 07-30-2021
+//
+// Last Modified By : RobertHAnstett
+// Last Modified On : 08-05-2021
+// ***********************************************************************
+// <copyright file="IEmailMessageCore.cs" company="Southport Solutions, LLC">
+//     2020
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,6 +21,9 @@ using Southport.Messaging.Email.Core.Result;
 
 namespace Southport.Messaging.Email.Core
 {
+    /// <summary>
+    /// Interface IEmailMessageCore
+    /// </summary>
     public interface IEmailMessageCore
     {
         #region Properties
@@ -104,7 +120,7 @@ namespace Southport.Messaging.Email.Core
         /// <value><c>null</c> if [test mode] contains no value, <c>true</c> if [test mode]; otherwise, <c>false</c>.</value>
         bool? TestMode { get; }
         /// <summary>
-        /// Gets a value indicating whether this <see cref="IEmailMessageCore"/> is tracking.
+        /// Gets a value indicating whether this <see cref="IEmailMessageCore" /> is tracking.
         /// </summary>
         /// <value><c>true</c> if tracking; otherwise, <c>false</c>.</value>
         bool Tracking { get; }
@@ -123,13 +139,7 @@ namespace Southport.Messaging.Email.Core
         /// </summary>
         /// <value>The custom arguments.</value>
         Dictionary<string, string> CustomArguments { get; }
-        /// <summary>
-        /// Sends the specified cancellation token.
-        /// </summary>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>Task&lt;IEnumerable&lt;IEmailResult&gt;&gt;.</returns>
-        Task<IEnumerable<IEmailResult>> Send(CancellationToken cancellationToken = default);
-        
+
         #endregion
 
         #region Methods
@@ -139,6 +149,7 @@ namespace Southport.Messaging.Email.Core
         /// </summary>
         /// <param name="emailAddress">The address.</param>
         /// <returns>IEmailMessage.</returns>
+        [Obsolete("Use SetFromAddress instead.")]
         IEmailMessageCore AddFromAddress(IEmailAddress emailAddress);
         /// <summary>
         /// Adds from address.
@@ -146,7 +157,23 @@ namespace Southport.Messaging.Email.Core
         /// <param name="emailAddress">The address.</param>
         /// <param name="name">The name.</param>
         /// <returns>IEmailMessage.</returns>
+        [Obsolete("Use SetFromAddress instead.")]
         IEmailMessageCore AddFromAddress(string emailAddress, string name = null);
+
+        /// <summary>
+        /// Sets from address.
+        /// </summary>
+        /// <param name="emailAddress">The email address.</param>
+        /// <returns>IEmailMessageCore.</returns>
+        IEmailMessageCore SetFromAddress(IEmailAddress emailAddress);
+        /// <summary>
+        /// Sets from address.
+        /// </summary>
+        /// <param name="emailAddress">The email address.</param>
+        /// <param name="name">The name.</param>
+        /// <returns>IEmailMessageCore.</returns>
+        IEmailMessageCore SetFromAddress(string emailAddress, string name = null);
+
         /// <summary>
         /// Adds to address.
         /// </summary>
@@ -289,6 +316,17 @@ namespace Southport.Messaging.Email.Core
         /// <param name="customArguments">The custom arguments.</param>
         /// <returns>IEmailMessage.</returns>
         IEmailMessageCore AddCustomArguments(Dictionary<string, string> customArguments);
+
+        #endregion
+
+        #region Send
+
+        /// <summary>
+        /// Sends the specified cancellation token.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>Task&lt;IEnumerable&lt;IEmailResult&gt;&gt;.</returns>
+        Task<IEnumerable<IEmailResult>> Send(CancellationToken cancellationToken = default);
 
         #endregion
     }
