@@ -4,7 +4,7 @@
 // Created          : 07-30-2021
 //
 // Last Modified By : RobertHAnstett
-// Last Modified On : 08-05-2021
+// Last Modified On : 03-06-2022
 // ***********************************************************************
 // <copyright file="IEmailMessageCore.cs" company="Southport Solutions, LLC">
 //     2020

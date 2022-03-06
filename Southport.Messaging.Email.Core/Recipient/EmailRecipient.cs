@@ -4,7 +4,7 @@
 // Created          : 12-27-2020
 //
 // Last Modified By : RobertHAnstett
-// Last Modified On : 12-28-2020
+// Last Modified On : 02-22-2021
 // ***********************************************************************
 // <copyright file="EmailRecipient.cs" company="Southport Solutions, LLC">
 //     2020
