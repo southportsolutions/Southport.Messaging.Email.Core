@@ -36,4 +36,6 @@ namespace Southport.Messaging.Email.Core.Result
         TResult ResponseMessage { get; set; }
         TResult Result { get; set; }
     }
+
+    public interface IEmailResult : IEmailResult<HttpResponseMessage>{}
 }
