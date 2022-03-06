@@ -11,6 +11,8 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
+using System;
 using System.Net.Http;
 using Southport.Messaging.Email.Core.Recipient;
 
@@ -19,7 +21,7 @@ namespace Southport.Messaging.Email.Core.Result
     /// <summary>
     /// Interface IEmailResult
     /// </summary>
-    public interface IEmailResult
+    public interface IEmailResult<TResult>
     {
         /// <summary>
         /// Gets or sets the email recipient.
@@ -30,6 +32,8 @@ namespace Southport.Messaging.Email.Core.Result
         /// Gets or sets the response message.
         /// </summary>
         /// <value>The response message.</value>
-        HttpResponseMessage ResponseMessage { get; set; }
+        [Obsolete("Use the Result property.")]
+        TResult ResponseMessage { get; set; }
+        TResult Result { get; set; }
     }
 }
