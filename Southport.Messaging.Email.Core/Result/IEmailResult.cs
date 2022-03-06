@@ -4,7 +4,7 @@
 // Created          : 12-27-2020
 //
 // Last Modified By : RobertHAnstett
-// Last Modified On : 12-27-2020
+// Last Modified On : 03-06-2022
 // ***********************************************************************
 // <copyright file="IEmailResult.cs" company="Southport Solutions, LLC">
 //     2020
@@ -21,7 +21,7 @@ namespace Southport.Messaging.Email.Core.Result
     /// <summary>
     /// Interface IEmailResult
     /// </summary>
-    public interface IEmailResult<TResult> where TResult : class
+    public interface IEmailResult
     {
         /// <summary>
         /// Gets or sets the email recipient.
@@ -32,8 +32,11 @@ namespace Southport.Messaging.Email.Core.Result
         /// Gets or sets the response message.
         /// </summary>
         /// <value>The response message.</value>
-        [Obsolete("Use the Result property.")]
-        TResult ResponseMessage { get; set; }
-        TResult Result { get; set; }
+        string Message { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is successful.
+        /// </summary>
+        /// <value><c>true</c> if this instance is successful; otherwise, <c>false</c>.</value>
+        bool IsSuccessful { get; set; }
     }
 }

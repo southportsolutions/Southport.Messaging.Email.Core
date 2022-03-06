@@ -4,7 +4,7 @@
 // Created          : 12-27-2020
 //
 // Last Modified By : Robert H Anstett
-// Last Modified On : 2021-08-05
+// Last Modified On : 03-06-2022
 // ***********************************************************************
 // <copyright file="IEmailMessage.cs" company="Southport Solutions, LLC">
 //     2020
@@ -21,10 +21,10 @@ namespace Southport.Messaging.Email.Core
     /// <summary>
     /// Interface IEmailMessage
     /// </summary>
+    /// <typeparam name="TInterface">The type of the t interface.</typeparam>
     [Obsolete("Use IEmailMessageCore.")]
-    public interface IEmailMessage<TInterface, TResult> : IEmailMessageCore<TResult> 
-        where TInterface : IEmailMessageCore<TResult> 
-        where TResult : class 
+    public interface IEmailMessage<TInterface> : IEmailMessageCore
+        where TInterface : IEmailMessageCore
     {
         /// <summary>
         /// Adds from address.
