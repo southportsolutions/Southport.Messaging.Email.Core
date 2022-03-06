@@ -22,7 +22,9 @@ namespace Southport.Messaging.Email.Core
     /// Interface IEmailMessage
     /// </summary>
     [Obsolete("Use IEmailMessageCore.")]
-    public interface IEmailMessage<TInterface> : IEmailMessageCore where TInterface : IEmailMessageCore
+    public interface IEmailMessage<TInterface, TResult> : IEmailMessageCore<TResult> 
+        where TInterface : IEmailMessageCore<TResult> 
+        where TResult : class 
     {
         /// <summary>
         /// Adds from address.
