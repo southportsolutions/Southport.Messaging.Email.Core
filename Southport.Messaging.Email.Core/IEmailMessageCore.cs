@@ -24,7 +24,7 @@ namespace Southport.Messaging.Email.Core
     /// <summary>
     /// Interface IEmailMessageCore
     /// </summary>
-    public interface IEmailMessageCore
+    public interface IEmailMessageCore<TResult> where TResult : class
     {
         #region Properties
 
@@ -150,7 +150,7 @@ namespace Southport.Messaging.Email.Core
         /// <param name="emailAddress">The address.</param>
         /// <returns>IEmailMessage.</returns>
         [Obsolete("Use SetFromAddress instead.")]
-        IEmailMessageCore AddFromAddress(IEmailAddress emailAddress);
+        IEmailMessageCore<TResult> AddFromAddress(IEmailAddress emailAddress);
         /// <summary>
         /// Adds from address.
         /// </summary>
@@ -158,164 +158,164 @@ namespace Southport.Messaging.Email.Core
         /// <param name="name">The name.</param>
         /// <returns>IEmailMessage.</returns>
         [Obsolete("Use SetFromAddress instead.")]
-        IEmailMessageCore AddFromAddress(string emailAddress, string name = null);
+        IEmailMessageCore<TResult> AddFromAddress(string emailAddress, string name = null);
 
         /// <summary>
         /// Sets from address.
         /// </summary>
         /// <param name="emailAddress">The email address.</param>
         /// <returns>IEmailMessageCore.</returns>
-        IEmailMessageCore SetFromAddress(IEmailAddress emailAddress);
+        IEmailMessageCore<TResult> SetFromAddress(IEmailAddress emailAddress);
         /// <summary>
         /// Sets from address.
         /// </summary>
         /// <param name="emailAddress">The email address.</param>
         /// <param name="name">The name.</param>
         /// <returns>IEmailMessageCore.</returns>
-        IEmailMessageCore SetFromAddress(string emailAddress, string name = null);
+        IEmailMessageCore<TResult> SetFromAddress(string emailAddress, string name = null);
 
         /// <summary>
         /// Adds to address.
         /// </summary>
         /// <param name="recipient">The address.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddToAddress(IEmailRecipient recipient);
+        IEmailMessageCore<TResult> AddToAddress(IEmailRecipient recipient);
         /// <summary>
         /// Adds to address.
         /// </summary>
         /// <param name="emailAddress">The address.</param>
         /// <param name="name">The name.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddToAddress(string emailAddress, string name = null);
+        IEmailMessageCore<TResult> AddToAddress(string emailAddress, string name = null);
         /// <summary>
         /// Adds to addresses.
         /// </summary>
         /// <param name="recipients">The addresses.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddToAddresses(List<IEmailRecipient> recipients);
+        IEmailMessageCore<TResult> AddToAddresses(List<IEmailRecipient> recipients);
         /// <summary>
         /// Adds the cc address.
         /// </summary>
         /// <param name="emailAddress">The address.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddCcAddress(IEmailAddress emailAddress);
+        IEmailMessageCore<TResult> AddCcAddress(IEmailAddress emailAddress);
         /// <summary>
         /// Adds the cc address.
         /// </summary>
         /// <param name="emailAddress">The address.</param>
         /// <param name="name">The name.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddCcAddress(string emailAddress, string name = null);
+        IEmailMessageCore<TResult> AddCcAddress(string emailAddress, string name = null);
         /// <summary>
         /// Adds the cc addresses.
         /// </summary>
         /// <param name="emailAddresses">The addresses.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddCcAddresses(List<IEmailAddress> emailAddresses);
+        IEmailMessageCore<TResult> AddCcAddresses(List<IEmailAddress> emailAddresses);
         /// <summary>
         /// Adds the BCC address.
         /// </summary>
         /// <param name="emailAddress">The address.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddBccAddress(IEmailAddress emailAddress);
+        IEmailMessageCore<TResult> AddBccAddress(IEmailAddress emailAddress);
         /// <summary>
         /// Adds the BCC address.
         /// </summary>
         /// <param name="emailAddress">The address.</param>
         /// <param name="name">The name.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddBccAddress(string emailAddress, string name = null);
+        IEmailMessageCore<TResult> AddBccAddress(string emailAddress, string name = null);
         /// <summary>
         /// Adds the BCC addresses.
         /// </summary>
         /// <param name="emailAddresses">The addresses.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddBccAddresses(List<IEmailAddress> emailAddresses);
+        IEmailMessageCore<TResult> AddBccAddresses(List<IEmailAddress> emailAddresses);
         /// <summary>
         /// Sets the subject.
         /// </summary>
         /// <param name="subject">The subject.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore SetSubject(string subject);
+        IEmailMessageCore<TResult> SetSubject(string subject);
         /// <summary>
         /// Sets the text.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore SetText(string text);
+        IEmailMessageCore<TResult> SetText(string text);
         /// <summary>
         /// Sets the HTML.
         /// </summary>
         /// <param name="html">The HTML.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore SetHtml(string html);
+        IEmailMessageCore<TResult> SetHtml(string html);
         /// <summary>
         /// Adds the attachments.
         /// </summary>
         /// <param name="attachment">The attachment.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddAttachments(IEmailAttachment attachment);
+        IEmailMessageCore<TResult> AddAttachments(IEmailAttachment attachment);
         /// <summary>
         /// Adds the attachments.
         /// </summary>
         /// <param name="attachments">The attachments.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddAttachments(List<IEmailAttachment> attachments);
+        IEmailMessageCore<TResult> AddAttachments(List<IEmailAttachment> attachments);
         /// <summary>
         /// Sets the template.
         /// </summary>
         /// <param name="template">The template.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore SetTemplate(string template);
+        IEmailMessageCore<TResult> SetTemplate(string template);
         /// <summary>
         /// Sets the delivery time.
         /// </summary>
         /// <param name="deliveryTime">The delivery time.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore SetDeliveryTime(DateTime deliveryTime);
+        IEmailMessageCore<TResult> SetDeliveryTime(DateTime deliveryTime);
         /// <summary>
         /// Sets the test mode.
         /// </summary>
         /// <param name="testMode">if set to <c>true</c> [test mode].</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore SetTestMode(bool testMode);
+        IEmailMessageCore<TResult> SetTestMode(bool testMode);
         /// <summary>
         /// Sets the tracking.
         /// </summary>
         /// <param name="tracking">if set to <c>true</c> [tracking].</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore SetTracking(bool tracking);
+        IEmailMessageCore<TResult> SetTracking(bool tracking);
         /// <summary>
         /// Sets the tracking clicks.
         /// </summary>
         /// <param name="tracking">if set to <c>true</c> [tracking].</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore SetTrackingClicks(bool tracking);
+        IEmailMessageCore<TResult> SetTrackingClicks(bool tracking);
         /// <summary>
         /// Sets the tracking opens.
         /// </summary>
         /// <param name="tracking">if set to <c>true</c> [tracking].</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore SetTrackingOpens(bool tracking);
+        IEmailMessageCore<TResult> SetTrackingOpens(bool tracking);
         /// <summary>
         /// Sets the reply to.
         /// </summary>
         /// <param name="emailAddress">The email address.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore SetReplyTo(string emailAddress);
+        IEmailMessageCore<TResult> SetReplyTo(string emailAddress);
         /// <summary>
         /// Adds the custom argument to attach data to the message (recipient custom arguments will override message level ones).
         /// </summary>
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddCustomArgument(string key, string value);
+        IEmailMessageCore<TResult> AddCustomArgument(string key, string value);
         /// <summary>
         /// Adds the custom arguments.
         /// </summary>
         /// <param name="customArguments">The custom arguments.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddCustomArguments(Dictionary<string, string> customArguments);
+        IEmailMessageCore<TResult> AddCustomArguments(Dictionary<string, string> customArguments);
 
         #endregion
 
@@ -326,7 +326,7 @@ namespace Southport.Messaging.Email.Core
         /// </summary>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>Task&lt;IEnumerable&lt;IEmailResult&gt;&gt;.</returns>
-        Task<IEnumerable<IEmailResult>> Send(CancellationToken cancellationToken = default);
+        Task<IEnumerable<IEmailResult<TResult>>> Send(CancellationToken cancellationToken = default);
 
         #endregion
     }

@@ -21,7 +21,7 @@ namespace Southport.Messaging.Email.Core.Result
     /// <summary>
     /// Interface IEmailResult
     /// </summary>
-    public interface IEmailResult<TResult>
+    public interface IEmailResult<TResult> where TResult : class
     {
         /// <summary>
         /// Gets or sets the email recipient.
@@ -36,6 +36,4 @@ namespace Southport.Messaging.Email.Core.Result
         TResult ResponseMessage { get; set; }
         TResult Result { get; set; }
     }
-
-    public interface IEmailResult : IEmailResult<HttpResponseMessage>{}
 }
