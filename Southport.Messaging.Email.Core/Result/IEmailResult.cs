@@ -33,6 +33,10 @@ namespace Southport.Messaging.Email.Core.Result
         /// </summary>
         /// <value>The response message.</value>
         string Message { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is successful.
+        /// </summary>
+        /// <value><c>true</c> if this instance is successful; otherwise, <c>false</c>.</value>
         bool IsSuccessful { get; set; }
     }
 }
