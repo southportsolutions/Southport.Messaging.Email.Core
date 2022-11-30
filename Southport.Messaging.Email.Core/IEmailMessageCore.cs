@@ -32,7 +32,7 @@ namespace Southport.Messaging.Email.Core
         /// Gets from address.
         /// </summary>
         /// <value>From address.</value>
-        IEmailAddress FromAddress { get; }
+        IEmailAddress? FromAddress { get; }
         /// <summary>
         /// Gets from.
         /// </summary>
