@@ -4,10 +4,10 @@
 // Created          : 07-30-2021
 //
 // Last Modified By : RobertHAnstett
-// Last Modified On : 03-06-2022
+// Last Modified On : 12-27-2022
 // ***********************************************************************
 // <copyright file="IEmailMessageCore.cs" company="Southport Solutions, LLC">
-//     2020
+//     2022
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
@@ -139,6 +139,10 @@ namespace Southport.Messaging.Email.Core
         /// </summary>
         /// <value>The custom arguments.</value>
         Dictionary<string, string> CustomArguments { get; }
+        /// <summary>
+        /// Gets the Message Substitutions.
+        /// </summary>
+        Dictionary<string, object> Substitutions { get; }
 
         #endregion
 
@@ -316,6 +320,19 @@ namespace Southport.Messaging.Email.Core
         /// <param name="customArguments">The custom arguments.</param>
         /// <returns>IEmailMessage.</returns>
         IEmailMessageCore AddCustomArguments(Dictionary<string, string> customArguments);
+        /// <summary>
+        /// Adds the substitution to message substitutions. (recipient custom arguments will override message level ones).
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        /// <returns>IEmailMessage.</returns>
+        IEmailMessageCore AddSubstitutions(string key, object value);
+        /// <summary>
+        /// Adds the substitutions.
+        /// </summary>
+        /// <param name="substitutions">The substitutions.</param>
+        /// <returns>IEmailMessage.</returns>
+        IEmailMessageCore AddSubstitutions(Dictionary<string, object> substitutions);
 
         #endregion
 
