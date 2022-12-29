@@ -326,7 +326,7 @@ namespace Southport.Messaging.Email.Core
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
         /// <returns>IEmailMessage.</returns>
-        IEmailMessageCore AddSubstitutions(string key, object value);
+        IEmailMessageCore AddSubstitution(string key, object value);
         /// <summary>
         /// Adds the substitutions.
         /// </summary>
