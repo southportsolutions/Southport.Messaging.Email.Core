@@ -149,22 +149,6 @@ namespace Southport.Messaging.Email.Core
         #region Methods
 
         /// <summary>
-        /// Adds from address.
-        /// </summary>
-        /// <param name="emailAddress">The address.</param>
-        /// <returns>IEmailMessage.</returns>
-        [Obsolete("Use SetFromAddress instead.")]
-        IEmailMessageCore AddFromAddress(IEmailAddress emailAddress);
-        /// <summary>
-        /// Adds from address.
-        /// </summary>
-        /// <param name="emailAddress">The address.</param>
-        /// <param name="name">The name.</param>
-        /// <returns>IEmailMessage.</returns>
-        [Obsolete("Use SetFromAddress instead.")]
-        IEmailMessageCore AddFromAddress(string emailAddress, string name = null);
-
-        /// <summary>
         /// Sets from address.
         /// </summary>
         /// <param name="emailAddress">The email address.</param>
