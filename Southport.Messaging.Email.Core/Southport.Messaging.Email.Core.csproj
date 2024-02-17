@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Robert Anstett</Authors>
     <Company>Southport Solutions, LLC</Company>
     <Product>Southport.Messaging.Email</Product>
     <Description>Southport Messaging Email library core classes and interfaces.</Description>
-    <Copyright>2020</Copyright>
+    <Copyright>© Southport Solutions, LLC. All rights reserved.</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryType>GIT</RepositoryType>
