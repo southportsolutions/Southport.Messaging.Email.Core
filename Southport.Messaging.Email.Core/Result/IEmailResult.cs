@@ -28,11 +28,19 @@ namespace Southport.Messaging.Email.Core.Result
         /// </summary>
         /// <value>The email recipient.</value>
         IEmailRecipient EmailRecipient { get; set; }
+
         /// <summary>
         /// Gets or sets the response message.
         /// </summary>
         /// <value>The response message.</value>
         string Message { get; set; }
+
+        /// <summary>
+        /// Gets or sets the email body.
+        /// </summary>
+        /// <value>The email body.</value>
+        public string MessageBody { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether this instance is successful.
         /// </summary>

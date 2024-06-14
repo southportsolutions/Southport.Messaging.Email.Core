@@ -47,6 +47,12 @@ namespace Southport.Messaging.Email.Core.Result
         /// </summary>
         /// <value>The response message.</value>
         public string Message { get; set; }
+
+        /// <summary>
+        /// Gets or sets the email body.
+        /// </summary>
+        /// <value>The email body.</value>
+        public string MessageBody { get; set; }
         /// <summary>
         /// Gets or sets a value indicating whether this instance is successful.
         /// </summary>
