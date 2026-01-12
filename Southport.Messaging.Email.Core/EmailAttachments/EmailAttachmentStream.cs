@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Southport.Messaging.Email.Core.EmailAttachments;
 
-public sealed class EmailAttachmentStream : EmailAttachmentBase, IAsyncDisposable
+public sealed class EmailAttachmentStream : IEmailAttachment, IDisposable, IAsyncDisposable
     {
         /// <summary>
         /// Create a stream attachment.
@@ -13,6 +13,7 @@ public sealed class EmailAttachmentStream : EmailAttachmentBase, IAsyncDisposabl
         /// </summary>
         private readonly bool _copyOnSet;
         private readonly bool _takeOwnershipWhenNotCopying;
+        private bool _ownsStream;
 
         /// <summary>
         /// Create a stream attachment.
@@ -28,19 +29,21 @@ public sealed class EmailAttachmentStream : EmailAttachmentBase, IAsyncDisposabl
         public EmailAttachmentStream(Stream stream, string filename = null, string contentType = null, bool copyOnSet = true, bool takeOwnershipWhenNotCopying = false)
             : this(copyOnSet, takeOwnershipWhenNotCopying)
         {
-            AttachmentFilename = filename;
-            AttachmentType = contentType;
-            ContentStream = stream;
+            Filename = filename;
+            Type = contentType;
+            Content = stream;
         }
 
-        public override Stream ContentStream
+        public string Filename { get; set; }
+        public string Type { get; set; }
+
+        private Stream _contentStream;
+        // Strongly-typed property for normal use
+        public Stream Content
         {
             get => _contentStream;
             set
             {
-                if (value != null && (_contentString != null || _contentBytes != null))
-                    throw new InvalidOperationException("Only one of ContentString, ContentStream, or ContentBytes can be set.");
-
                 // Dispose any previously owned stream
                 if (_contentStream != null && _ownsStream)
                 {
@@ -74,9 +77,45 @@ public sealed class EmailAttachmentStream : EmailAttachmentBase, IAsyncDisposabl
             }
         }
 
+        // Explicit interface implementation to satisfy IEmailAttachment (object)
+        object IEmailAttachment.Content
+        {
+            get => Content;
+            set
+            {
+                if (value == null)
+                {
+                    Content = null;
+                    return;
+                }
+                if (value is Stream s)
+                {
+                    Content = s;
+                    return;
+                }
+                throw new InvalidCastException("IEmailAttachment.Content must be a Stream for EmailAttachmentStream.");
+            }
+        }
+
         public async ValueTask DisposeAsync()
         {
-            if (_contentStream != null) await _contentStream.DisposeAsync();
-            if (ContentStream != null) await ContentStream.DisposeAsync();
+            // Dispose any owned stream once
+            if (_contentStream != null && _ownsStream)
+            {
+                await _contentStream.DisposeAsync().ConfigureAwait(false);
+                _contentStream = null;
+                _ownsStream = false;
+            }
+        }
+
+        public void Dispose()
+        {
+            // Dispose any owned stream once
+            if (_contentStream != null && _ownsStream)
+            {
+                _contentStream.Dispose();
+                _contentStream = null;
+                _ownsStream = false;
+            }
         }
     }
