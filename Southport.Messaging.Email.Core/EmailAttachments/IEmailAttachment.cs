@@ -20,32 +20,22 @@ namespace Southport.Messaging.Email.Core.EmailAttachments
     /// <summary>
     /// Interface IEmailAttachment
     /// </summary>
-    public interface IEmailAttachment : IDisposable, IAsyncDisposable
+    public interface IEmailAttachment
     {
         /// <summary>
-        /// Gets or sets the string content. Only set 1 of ContentString, StreamContent, or ContentBytes.
+        /// Gets or sets the content.
         /// </summary>
-        string ContentString { get; set; }
-        
-        /// <summary>
-        /// Gets or sets the stream content. Only set 1 of ContentString, StreamContent, or ContentBytes.
-        /// </summary>
-        Stream ContentStream { get; set; }
-        
-        /// <summary>
-        /// Gets or sets the content bytes. Only set 1 of ContentString, StreamContent
-        /// </summary>
-        byte[] ContentBytes { get; set; }
+        object Content { get; set; }
         
         /// <summary>
         /// Gets or sets the type of the attachment.
         /// </summary>
         /// <value>The type of the attachment.</value>
-        string AttachmentType { get; set; }
+        string Type { get; set; }
         /// <summary>
         /// Gets or sets the attachment filename.
         /// </summary>
         /// <value>The attachment filename.</value>
-        string AttachmentFilename { get; set; }
+        string Filename { get; set; }
     }
 }
