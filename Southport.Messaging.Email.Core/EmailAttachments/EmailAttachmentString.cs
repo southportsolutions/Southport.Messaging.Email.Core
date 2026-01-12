@@ -1,9 +1,9 @@
 ﻿
 namespace Southport.Messaging.Email.Core.EmailAttachments
 {
-    public sealed class StringAttachment : EmailAttachmentBase
+    public sealed class EmailAttachmentString : EmailAttachmentBase
     {
-        public StringAttachment(string content, string filename = null, string contentType = "text/plain")
+        public EmailAttachmentString(string content, string filename = null, string contentType = "text/plain")
         {
             ContentString = content;
             AttachmentFilename = filename;

@@ -20,7 +20,7 @@ namespace Southport.Messaging.Email.Core.EmailAttachments
     /// <summary>
     /// Interface IEmailAttachment
     /// </summary>
-    public interface IEmailAttachment : IDisposable
+    public interface IEmailAttachment : IDisposable, IAsyncDisposable
     {
         /// <summary>
         /// Gets or sets the string content. Only set 1 of ContentString, StreamContent, or ContentBytes.

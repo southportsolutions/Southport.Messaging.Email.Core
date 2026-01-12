@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace Southport.Messaging.Email.Core.EmailAttachments;
 
-public sealed class EmailAttachmentStream : EmailAttachmentBase, IAsyncDisposable
+public sealed class EmailAttachmentStream : EmailAttachmentBase
     {
         /// <summary>
         /// Create a stream attachment.
@@ -72,11 +71,5 @@ public sealed class EmailAttachmentStream : EmailAttachmentBase, IAsyncDisposabl
                     _ownsStream = _takeOwnershipWhenNotCopying;
                 }
             }
-        }
-
-        public async ValueTask DisposeAsync()
-        {
-            if (_contentStream != null) await _contentStream.DisposeAsync();
-            if (ContentStream != null) await ContentStream.DisposeAsync();
         }
     }

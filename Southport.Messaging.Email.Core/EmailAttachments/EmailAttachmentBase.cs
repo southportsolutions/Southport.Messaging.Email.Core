@@ -14,6 +14,7 @@
 
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Southport.Messaging.Email.Core.EmailAttachments
 {
@@ -67,13 +68,29 @@ namespace Southport.Messaging.Email.Core.EmailAttachments
         public string AttachmentType { get; set; }
         public string AttachmentFilename { get; set; }
 
+        public virtual async ValueTask DisposeAsync()
+        {
+            // Dispose any owned stream once
+            if (_contentStream != null && _ownsStream)
+            {
+                await _contentStream.DisposeAsync().ConfigureAwait(false);
+                _contentStream = null;
+                _ownsStream = false;
+            }
+
+            GC.SuppressFinalize(this);
+        }
+
         public virtual void Dispose()
         {
+            // Dispose any owned stream once
             if (_contentStream != null && _ownsStream)
             {
                 _contentStream.Dispose();
                 _contentStream = null;
+                _ownsStream = false;
             }
+
             GC.SuppressFinalize(this);
         }
     }
