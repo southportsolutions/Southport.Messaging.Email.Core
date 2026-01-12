@@ -6,10 +6,10 @@ using Xunit.Abstractions;
 
 namespace Southport.Messaging.Email.Core.Test
 {
-    public class EmailAddress_UnitTest
+    public class EmailAddressUnitTest
     {
-        public List<string> ValidEmailAddresses = new List<string>()
-        {
+        public readonly List<string> ValidEmailAddresses =
+        [
             "email@example.com",
             "firstname.lastname@example.com",
             "email@subdomain.example.com",
@@ -23,10 +23,10 @@ namespace Southport.Messaging.Email.Core.Test
             "email@example.museum",
             "email@example.co.jp",
             "firstname-lastname@example.com"
-        };
+        ];
 
-        public List<string> InvalidEmailAddresses = new List<string>()
-        {
+        public readonly List<string> InvalidEmailAddresses =
+        [
             "plainaddress",
             "#@%^%#$@#$@#.com",
             "@example.com",
@@ -42,11 +42,11 @@ namespace Southport.Messaging.Email.Core.Test
             "email@-example.com",
             "email@example..com",
             "Abc..123@example.com"
-        };
+        ];
 
         private readonly  ITestOutputHelper _output;
 
-        public EmailAddress_UnitTest(ITestOutputHelper output)
+        public EmailAddressUnitTest(ITestOutputHelper output)
         {
             _output = output;
         }
