@@ -30,7 +30,7 @@ public sealed class EmailAttachmentBytes : IEmailAttachment
                 Content = s;
                 return;
             }
-            throw new InvalidCastException("IEmailAttachment.Content must be a string for EmailAttachmentString.");
+            throw new InvalidCastException("IEmailAttachment.Content must be a byte[] for EmailAttachmentBytes.");
         }
     }
     public string Type { get; set; }
