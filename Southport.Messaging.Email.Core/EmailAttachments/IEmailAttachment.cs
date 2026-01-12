@@ -14,7 +14,6 @@
 
 using System;
 using System.IO;
-using System.Net.Http;
 
 namespace Southport.Messaging.Email.Core.EmailAttachments
 {
