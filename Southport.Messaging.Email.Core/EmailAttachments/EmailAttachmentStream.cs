@@ -93,7 +93,7 @@ public sealed class EmailAttachmentStream : IEmailAttachment, IDisposable, IAsyn
                     Content = s;
                     return;
                 }
-                throw new InvalidCastException("IEmailAttachment.Content must be a string for EmailAttachmentString.");
+                throw new InvalidCastException("IEmailAttachment.Content must be a Stream for EmailAttachmentStream.");
             }
         }
 
