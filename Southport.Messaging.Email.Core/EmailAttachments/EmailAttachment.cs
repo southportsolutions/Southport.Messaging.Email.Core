@@ -14,7 +14,6 @@
 
 using System;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace Southport.Messaging.Email.Core.EmailAttachments
 {
@@ -23,100 +22,59 @@ namespace Southport.Messaging.Email.Core.EmailAttachments
     /// Implements the <see cref="Southport.Messaging.Email.Core.EmailAttachments.IEmailAttachment" />
     /// </summary>
     /// <seealso cref="Southport.Messaging.Email.Core.EmailAttachments.IEmailAttachment" />
-    public class EmailAttachment : IEmailAttachment, IAsyncDisposable
+    public abstract class EmailAttachmentBase : IEmailAttachment
     {
-        private string _contentString;
+        protected string _contentString;
+        protected byte[] _contentBytes;
+        protected Stream _contentStream;
+        protected bool _ownsStream;
 
-        /// <summary>
-        ///  Gets or sets the string content. Only set 1 of ContentString, StreamContent, or ContentBytes.
-        /// </summary>
-
-        public string ContentString
+        public virtual string ContentString
         {
             get => _contentString;
             set
             {
-                if (_contentStream != null || _contentBytes != null)
-                {
+                if (value != null && (_contentStream != null || _contentBytes != null))
                     throw new InvalidOperationException("Only one of ContentString, ContentStream, or ContentBytes can be set.");
-                }
                 _contentString = value;
             }
         }
-        
-        private Stream _contentStream;
 
-        /// <summary>
-        /// Gets or sets the stream content. Only set 1 of ContentString, StreamContent, or ContentBytes.
-        /// </summary>
-        public Stream ContentStream
+        public virtual Stream ContentStream
         {
             get => _contentStream;
             set
             {
-                if (!string.IsNullOrWhiteSpace(_contentString) || _contentBytes != null)
-                {
-                    throw new InvalidOperationException(
-                        "Only one of ContentString, ContentStream, or ContentBytes can be set.");
-                }
-
-                // dispose any previous owned stream
-                _contentStream?.Dispose();
-                _contentStream = null;
-
-                if (value == null)
-                {
-                    _contentStream?.Dispose();
-                    _contentStream = null;
-                    return;
-                }
-
-                if (!value.CanRead) throw new InvalidOperationException("Stream must be readable to copy.");
-                var ms = new MemoryStream();
-                if (value.CanSeek) value.Position = 0;
-                value.CopyTo(ms);
-                ms.Position = 0;
-                _contentStream = ms;
+                if (value != null && (_contentString != null || _contentBytes != null))
+                    throw new InvalidOperationException("Only one of ContentString, ContentStream, or ContentBytes can be set.");
+                // Default behavior: accept reference but do not claim ownership.
+                _contentStream = value;
+                _ownsStream = false;
             }
         }
-        
-        private byte[] _contentBytes;
-        /// <summary>
-        /// Gets or sets the byte array content. Only set 1 of ContentString, StreamContent, or ContentBytes.
-        /// </summary>
-        public byte[] ContentBytes {
-            get => _contentBytes;
+
+        public virtual byte[] ContentBytes
+        {
+            get => _contentBytes == null ? null : (byte[])_contentBytes.Clone();
             set
             {
-                if (!string.IsNullOrWhiteSpace(_contentString) || _contentStream != null)
-                {
+                if (value != null && (_contentString != null || _contentStream != null))
                     throw new InvalidOperationException("Only one of ContentString, ContentStream, or ContentBytes can be set.");
-                }
-                _contentBytes = value;
+                _contentBytes = value == null ? null : (byte[])value.Clone();
             }
         }
 
-        /// <summary>
-        /// Gets or sets the type of the attachment.
-        /// </summary>
-        /// <value>The type of the attachment.</value>
         public string AttachmentType { get; set; }
-        /// <summary>
-        /// Gets or sets the attachment filename.
-        /// </summary>
-        /// <value>The attachment filename.</value>
         public string AttachmentFilename { get; set; }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
-            _contentStream?.Dispose();
-            ContentStream?.Dispose();
-        }
-
-        public async ValueTask DisposeAsync()
-        {
-            if (_contentStream != null) await _contentStream.DisposeAsync();
-            if (ContentStream != null) await ContentStream.DisposeAsync();
+            if (_contentStream != null && _ownsStream)
+            {
+                _contentStream.Dispose();
+                _contentStream = null;
+            }
+            GC.SuppressFinalize(this);
         }
     }
 }
