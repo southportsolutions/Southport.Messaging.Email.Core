@@ -12,30 +12,69 @@
 // <summary></summary>
 // ***********************************************************************
 
+using System;
+using System.IO;
+
 namespace Southport.Messaging.Email.Core.EmailAttachments
 {
     /// <summary>
     /// Class EmailAttachment.
     /// Implements the <see cref="Southport.Messaging.Email.Core.EmailAttachments.IEmailAttachment" />
-    /// Implements the <see cref="Southport.Messaging.Email.Core.EmailAttachments.IEmailAttachment" />
     /// </summary>
     /// <seealso cref="Southport.Messaging.Email.Core.EmailAttachments.IEmailAttachment" />
-    public class EmailAttachment : IEmailAttachment
+    public abstract class EmailAttachmentBase : IEmailAttachment
     {
-        /// <summary>
-        /// Gets or sets the content.
-        /// </summary>
-        /// <value>The content.</value>
-        public string Content { get; set; }
-        /// <summary>
-        /// Gets or sets the type of the attachment.
-        /// </summary>
-        /// <value>The type of the attachment.</value>
+        protected string _contentString;
+        protected byte[] _contentBytes;
+        protected Stream _contentStream;
+        protected bool _ownsStream;
+
+        public virtual string ContentString
+        {
+            get => _contentString;
+            set
+            {
+                if (value != null && (_contentStream != null || _contentBytes != null))
+                    throw new InvalidOperationException("Only one of ContentString, ContentStream, or ContentBytes can be set.");
+                _contentString = value;
+            }
+        }
+
+        public virtual Stream ContentStream
+        {
+            get => _contentStream;
+            set
+            {
+                if (value != null && (_contentString != null || _contentBytes != null))
+                    throw new InvalidOperationException("Only one of ContentString, ContentStream, or ContentBytes can be set.");
+                // Default behavior: accept reference but do not claim ownership.
+                _contentStream = value;
+                _ownsStream = false;
+            }
+        }
+
+        public virtual byte[] ContentBytes
+        {
+            get => _contentBytes == null ? null : (byte[])_contentBytes.Clone();
+            set
+            {
+                if (value != null && (_contentString != null || _contentStream != null))
+                    throw new InvalidOperationException("Only one of ContentString, ContentStream, or ContentBytes can be set.");
+                _contentBytes = value == null ? null : (byte[])value.Clone();
+            }
+        }
+
         public string AttachmentType { get; set; }
-        /// <summary>
-        /// Gets or sets the attachment filename.
-        /// </summary>
-        /// <value>The attachment filename.</value>
         public string AttachmentFilename { get; set; }
+
+        public virtual void Dispose()
+        {
+            if (_contentStream != null && _ownsStream)
+            {
+                _contentStream.Dispose();
+                _contentStream = null;
+            }
+            GC.SuppressFinalize(this);
+        }
     }
 }

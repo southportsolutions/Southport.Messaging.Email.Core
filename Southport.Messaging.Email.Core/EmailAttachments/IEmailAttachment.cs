@@ -12,18 +12,31 @@
 // <summary></summary>
 // ***********************************************************************
 
+using System;
+using System.IO;
+
 namespace Southport.Messaging.Email.Core.EmailAttachments
 {
     /// <summary>
     /// Interface IEmailAttachment
     /// </summary>
-    public interface IEmailAttachment
+    public interface IEmailAttachment : IDisposable
     {
         /// <summary>
-        /// Gets or sets the content.
+        /// Gets or sets the string content. Only set 1 of ContentString, StreamContent, or ContentBytes.
         /// </summary>
-        /// <value>The content.</value>
-        string Content { get; set; }
+        string ContentString { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the stream content. Only set 1 of ContentString, StreamContent, or ContentBytes.
+        /// </summary>
+        Stream ContentStream { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the content bytes. Only set 1 of ContentString, StreamContent
+        /// </summary>
+        byte[] ContentBytes { get; set; }
+        
         /// <summary>
         /// Gets or sets the type of the attachment.
         /// </summary>

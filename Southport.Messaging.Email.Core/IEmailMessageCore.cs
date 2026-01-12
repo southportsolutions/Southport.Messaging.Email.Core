@@ -24,7 +24,7 @@ namespace Southport.Messaging.Email.Core
     /// <summary>
     /// Interface IEmailMessageCore
     /// </summary>
-    public interface IEmailMessageCore
+    public interface IEmailMessageCore : IAsyncDisposable
     {
         #region Properties
 
