@@ -5,11 +5,12 @@ namespace Southport.Messaging.Email.Core.EmailAttachments
 {
     public sealed class EmailAttachmentString : IEmailAttachment
     {
-        public EmailAttachmentString(string content, string filename = null, string contentType = "text/plain")
+        public EmailAttachmentString(string content, string filename = null, string contentType = "text/plain", bool isBase64Encoded = false)
         {
             Content = content;
             Filename = filename;
             Type = contentType;
+            IsBase64Encoded = isBase64Encoded;
         }
 
         // Strongly-typed property for normal use
@@ -35,6 +36,7 @@ namespace Southport.Messaging.Email.Core.EmailAttachments
             }
         }
         public string Type { get; set; }
+        public bool IsBase64Encoded { get; set; }
         public string Filename { get; set; }
     }
 }
