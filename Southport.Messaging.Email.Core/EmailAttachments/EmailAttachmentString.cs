@@ -36,7 +36,7 @@ namespace Southport.Messaging.Email.Core.EmailAttachments
             }
         }
         public string Type { get; set; }
-        public bool IsBase64Encoded { get; }
+        public bool IsBase64Encoded { get; set; }
         public string Filename { get; set; }
     }
 }
